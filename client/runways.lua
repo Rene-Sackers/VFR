@@ -229,7 +229,7 @@ function LoadRunways()
 		}
 	)
 	
-	-- Tanah Lebar
+	-- Pulau Dayang Terlena
 	table.insert(runways, 
 		{
 			center = Vector3(-11873.463867, 609.860474, 4799.777344),
@@ -276,6 +276,24 @@ function LoadRunways()
 				{
 					lineStart = Vector3(10120.004883, 271.384613, -9937.076172),
 					lineEnd = Vector3(9735.807617, 271.383728, -10360.874023)
+				}
+			}
+		}
+	)
+
+	-- Banjaran Gundin
+	table.insert(runways, 
+		{
+			center = Vector3(-4827.056152, 405.637909, -11432.652344),
+			radius = 3000,
+			runwayLines = {
+				{
+					lineStart = Vector3(-5150.615234, 405.570435, -11140.495117),
+					lineEnd = Vector3(-4526.847656, 405.582642, -11764.246094)
+				},
+				{
+					lineStart = Vector3(-5119.368164, 405.574249, -11109.314453),
+					lineEnd = Vector3(-4495.647461, 405.574890, -11733.138672)
 				}
 			}
 		}
