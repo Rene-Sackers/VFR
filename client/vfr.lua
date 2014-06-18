@@ -5,6 +5,7 @@ function VFR:__init()
 	
 	self.runways = LoadRunways()
 	self.inPlane = false
+	self.beVisible = true	-- couldn't think of a better name but this is just whether or not the runways are visible
 	
 	self.planes = {
 		[59] = true,
@@ -21,6 +22,7 @@ function VFR:__init()
 	Events:Subscribe("LocalPlayerEnterVehicle", self, self.LocalPlayerEnterVehicle)
 	Events:Subscribe("LocalPlayerExitVehicle", function() self.inPlane = false end)
 	Events:Subscribe("Render", self, self.Render)
+	Network:Subscribe("toggleVFR", self, self.ToggleVFR)
 end
 
 function VFR:LocalPlayerEnterVehicle(args)
@@ -35,7 +37,7 @@ function VFR:LocalPlayerEnterVehicle(args)
 end
 
 function VFR:Render()
-	if not self.inPlane or Game:GetState() ~= GUIState.Game then return end
+	if not self.inPlane or Game:GetState() ~= GUIState.Game or not self.beVisible then return end
 	
 	-- Check all runways
 	for index, data in pairs(self.runways) do
@@ -52,6 +54,11 @@ function VFR:Render()
 			end
 		end
 	end
+end
+
+-- toggles if runways are visible or not
+function VFR:ToggleVFR()
+	self.beVisible = not self.beVisible
 end
 
 Events:Subscribe("ModuleLoad", function()
